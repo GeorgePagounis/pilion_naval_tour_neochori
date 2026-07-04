@@ -1,16 +1,1 @@
-{
-  "hosting": {
-    "public": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
-}
+{"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"**","destination":"/index.html"}]},"flutter":{"platforms":{"android":{"default":{"projectId":"pelion-naval-tour-neochori","appId":"1:1026820419236:android:70e3616196ae6fe1314031","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"pelion-naval-tour-neochori","appId":"1:1026820419236:ios:ad140f9d9f73d408314031","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"macos":{"default":{"projectId":"pelion-naval-tour-neochori","appId":"1:1026820419236:ios:ad140f9d9f73d408314031","uploadDebugSymbols":false,"fileOutput":"macos/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"pelion-naval-tour-neochori","configurations":{"android":"1:1026820419236:android:70e3616196ae6fe1314031","ios":"1:1026820419236:ios:ad140f9d9f73d408314031","macos":"1:1026820419236:ios:ad140f9d9f73d408314031","web":"1:1026820419236:web:cecf46246e8bf069314031","windows":"1:1026820419236:web:0d73f4775d0d91e9314031"}}}}}}

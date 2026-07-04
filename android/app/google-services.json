@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1026820419236",
+    "project_id": "pelion-naval-tour-neochori",
+    "storage_bucket": "pelion-naval-tour-neochori.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026820419236:android:70e3616196ae6fe1314031",
+        "android_client_info": {
+          "package_name": "com.example.pilion_naval_tour_neochori"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAArf06byoObDGuj7-hdJeYRD5UlvWiAo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
