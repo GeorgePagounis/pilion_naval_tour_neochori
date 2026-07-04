@@ -1,19 +1,23 @@
-Drop real photos here, named exactly:
+STOP PHOTOS — named exactly (all present as of the overhaul):
 
-  stop_mooring.jpeg
-  stop_kalderimi.jpeg
-  stop_boatyard.jpeg
-  stop_fountain.jpeg
-  stop_stnicholas.jpeg
-  stop_lookout.jpeg
+  stop_platanos.jpeg        the plane-tree square (start)
+  stop_farmacy.jpeg         the pharmacy lane
+  stop_mainSquare.jpeg      the main café square
+  stop_mainSquareLeft.jpeg  the quiet left-hand lane
+  stop_mainSquareRight.jpeg the steps looking back over the square
+  stop_agioiAnargyroi.jpeg  the church of the healer-saints
+  stop_cultureCenter.jpeg   the cultural centre (finale)
+
+TEAM PHOTOS (optional — shown on the Credits/"crew" screen as round avatars):
+
+  team_guides.jpeg      guiding & storytelling
+  team_research.jpeg    research & archive
+  team_media.jpeg       photography & production
 
 Notes
-- Use .jpeg (that is what the story file expects). If a file has the wrong
-  name, rename the FILE — do not edit the JSON.
-- Landscape orientation looks best; keep each file under ~400 KB / ~1600 px
-  on the long edge so the web app loads fast.
-- After adding or changing photos, fully stop the app and re-run it
-  (`flutter run`) — new asset files are picked up at build start, not on hot
-  reload.
-- Any stop without a photo shows a painted anchor placeholder automatically,
-  so missing files never look broken.
+- Use .jpeg. If a file has the wrong name, rename the FILE, not the JSON.
+- A stop with no photo shows a painted anchor placeholder; a team with no
+  photo just shows its role as text. Nothing ever looks broken.
+- Landscape looks best for stops; keep files under ~400 KB / ~1600 px long edge.
+- After adding/changing photos, fully stop and re-run the app (`flutter run`) —
+  assets are picked up at build start, not on hot reload.

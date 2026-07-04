@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../app_state.dart';
 import '../models.dart';
+import '../story_repository.dart' show hasAsset;
 import '../theme.dart';
 import '../widgets.dart';
 
@@ -52,9 +53,21 @@ class CreditsScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   for (final person in credits.people)
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Column(
                         children: [
+                          if (person.photo != null &&
+                              hasAsset(person.photo!)) ...[
+                            ClipOval(
+                              child: Image.asset(
+                                person.photo!,
+                                width: 96,
+                                height: 96,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                          ],
                           Text(
                             person.role.of(lang),
                             textAlign: TextAlign.center,
@@ -66,11 +79,12 @@ class CreditsScreen extends StatelessWidget {
                                     fontStyle: FontStyle.normal),
                           ),
                           const SizedBox(height: 2),
-                          Text(
-                            person.name,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
+                          if (person.name.isNotEmpty && person.name != '—')
+                            Text(
+                              person.name,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
                         ],
                       ),
                     ),

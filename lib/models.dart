@@ -97,14 +97,19 @@ class StoryNode {
 }
 
 class CreditPerson {
-  const CreditPerson({required this.role, required this.name});
+  const CreditPerson({required this.role, required this.name, this.photo});
 
   final LocalizedText role;
   final String name;
 
+  /// Optional team photo path (e.g. assets/images/team_guides.jpeg). Shown as
+  /// an avatar only if the file shipped; otherwise the entry is text-only.
+  final String? photo;
+
   factory CreditPerson.fromJson(Map json) => CreditPerson(
         role: LocalizedText.fromJson(json['role']),
         name: (json['name'] ?? '').toString(),
+        photo: json['photo']?.toString(),
       );
 }
 
