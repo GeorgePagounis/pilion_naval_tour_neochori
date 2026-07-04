@@ -1,0 +1,295 @@
+{
+  "_comment": "Story graph for the Neochori naval tour. Reserved choice target 'end' routes to /end. Node ids double as photo names: assets/images/stop_<id>.jpg. All strings are {el, en}. GREEK DRAFTED BY CLAUDE — needs georgios' review.",
+  "start": "mooring",
+  "title": {
+    "el": "Νεοχώρι — Το Ημερολόγιο του Λοστρόμου",
+    "en": "Neochori — The Boatswain's Log"
+  },
+  "subtitle": {
+    "el": "Ένας περίπατος στο χωριό, με όρους της θάλασσας",
+    "en": "A walk through the village, told in the words of the sea"
+  },
+  "intro": {
+    "el": "Με λένε Λάμπρο. Άρμενα δίπλα στον καπετάν Αποστόλη Γιαννουλάκη, στην μπρατσέρα του, όταν και οι δυο μας ήμασταν νέοι. Εκείνος έφυγε πια, μα το χωριό τον θυμάται — κι εγώ θα σε ξεναγήσω στα σοκάκια του σαν να ήταν λιμάνι. Έτοιμος να λύσουμε τους κάβους;",
+    "en": "They call me Lambros. I sailed beside Captain Apostolis Giannoulakis, aboard his bracera, when we were both young men. He is gone now, but the village remembers him — and I will guide you through its lanes as though they were a harbour. Ready to cast off the mooring lines?"
+  },
+  "guideNote": {
+    "el": "Ο Λάμπρος είναι φανταστικός σύντροφος — ένα σύνθετο πρόσωπο εμπνευσμένο από τα έγγραφα του καπετάν Αποστόλη Γιαννουλάκη (πορτολάνος 1910) και από προφορικές μαρτυρίες του Νεοχωρίου. Δεν παριστάνουμε τα λόγια κάποιου υπαρκτού νεκρού· του δίνουμε μια τιμητική, επινοημένη φωνή.",
+    "en": "Lambros is a fictional companion — a composite character drawn from the documents of Captain Apostolis Giannoulakis (1910 portolan) and oral testimonies of Neochori. We do not put words in a real deceased person's mouth; we give him an honouring, invented voice."
+  },
+  "nodes": {
+    "mooring": {
+      "image": "assets/images/stop_mooring.jpeg",
+      "title": {
+        "el": "Το Αγκυροβόλι",
+        "en": "The Mooring"
+      },
+      "text": {
+        "el": "Στέκεσαι στην πλατεία, κάτω απ' τον γέρικο πλάτανο. Εδώ ρίχνουμε άγκυρα πριν κάθε ταξίδι. Ο ίσκιος του δροσίζει τους ναυτικούς όπως τα πανιά κρατούν τον αέρα. Άκου: το χωριό μιλάει σαν καράβι δεμένο στο μουράγιο — τρίζει, ανασαίνει, περιμένει. Από δω ξεκινούν όλοι οι δρόμοι προς τη θάλασσα.",
+        "en": "You are standing in the square, under the old plane tree. Here we drop anchor before every voyage. Its shade cools the sailors the way canvas holds the wind. Listen: the village speaks like a ship made fast to the quay — it creaks, it breathes, it waits. Every road to the sea begins from here."
+      },
+      "choices": [
+        {
+          "label": {
+            "el": "Ανέβα τα σκαλιά, βίρα!",
+            "en": "Haul up the stone stairs"
+          },
+          "target": "kalderimi"
+        },
+        {
+          "label": {
+            "el": "Ακολούθησε τον ήχο του νερού",
+            "en": "Follow the sound of water"
+          },
+          "target": "fountain"
+        }
+      ]
+    },
+    "kalderimi": {
+      "image": "assets/images/stop_kalderimi.jpeg",
+      "title": {
+        "el": "Το Καλντερίμι",
+        "en": "The Rigging Steps"
+      },
+      "text": {
+        "el": "Το καλντερίμι ανηφορίζει σαν τα ξάρτια σ' έναν ιστό — σκαλί το σκαλί, κόμπο τον κόμπο. Τα πόδια σου μαθαίνουν τον ρυθμό που μάθαιναν τα χέρια μας στα σκοινιά. Κάθε πέτρα εδώ την πάτησαν μουλάρια φορτωμένα με ό,τι έφερνε κι ό,τι ζητούσε η θάλασσα.",
+        "en": "The cobbled path climbs like the rigging up a mast — step by step, knot by knot. Your feet learn the rhythm our hands once learned on the ropes. Every stone here was trodden by mules loaded with all the sea brought in and all it asked for."
+      },
+      "encounter": {
+        "speaker": {
+          "el": "Ένας αγωγιάτης",
+          "en": "A muleteer"
+        },
+        "year": 1928,
+        "provenance": {
+          "el": "Σύνθετη φωνή, από προφορικές μαρτυρίες αγωγιατών του Πηλίου.",
+          "en": "Composite voice, from oral histories of Pelion muleteers."
+        },
+        "text": {
+          "el": "Με βλέπεις να λαχανιάζω; Τούτο το μονοπάτι το ανεβαίνω τρεις φορές τη μέρα. Κατεβάζω λάδι και κάστανα στο μουράγιο, ανεβάζω αλάτι και σχοινιά για τα καράβια. Λένε πως ο ναυτικός ταξιδεύει· όμως χωρίς εμάς, τα πόδια της στεριάς, κανένα φορτίο δεν φτάνει στο κύμα. Πρόσεχε πού πατάς — η πέτρα γυαλίστηκε από χίλιες τέτοιες ανεβασιές.",
+          "en": "You see me catch my breath? This path I climb three times a day. Down I bring oil and chestnuts to the quay; up I carry salt and rope for the ships. They say the sailor is the one who travels — but without us, the feet of the land, no cargo ever reaches the wave. Watch your step: the stone was polished by a thousand climbs like this one."
+        }
+      },
+      "choices": [
+        {
+          "label": {
+            "el": "Στρίψε προς το σφυροκόπημα",
+            "en": "Turn in toward the hammering"
+          },
+          "target": "boatyard"
+        },
+        {
+          "label": {
+            "el": "Ανέβα προς την καμπάνα",
+            "en": "Climb on toward the bell"
+          },
+          "target": "stnicholas"
+        }
+      ]
+    },
+    "fountain": {
+      "image": "assets/images/stop_fountain.jpeg",
+      "title": {
+        "el": "Η Κρήνη",
+        "en": "Taking On Water"
+      },
+      "text": {
+        "el": "Πριν σαλπάρει, κάθε καράβι κάνει νερό. Το ίδιο κι εδώ, στην κρήνη του χωριού. Το νερό κατεβαίνει απ' το βουνό και μαζεύεται σε τούτη τη γούρνα, όπου μαζεύονται και οι φωνές. Οι γυναίκες γεμίζουν τα σταμνιά τους και, χωρίς να το ξέρουν, κρατούν τα νέα όλου του λιμανιού.",
+        "en": "Before it sails, every ship takes on water. So too here, at the village fountain. The water comes down from the mountain and gathers in this basin, where the voices gather as well. The women fill their pitchers and, without knowing it, hold the news of the whole harbour."
+      },
+      "encounter": {
+        "speaker": {
+          "el": "Μια νεροκουβαλήτρα",
+          "en": "A water-carrier"
+        },
+        "year": 1936,
+        "provenance": {
+          "el": "Σύνθετη φωνή, από αφηγήσεις γυναικών του νοικοκυριού.",
+          "en": "Composite voice, from women's household narratives."
+        },
+        "text": {
+          "el": "Νομίζεις πως η θάλασσα ανήκει στους άντρες; Έλα να σου πω. Εδώ στην κρήνη μαθαίνουμε πρώτες ποιο καράβι μπήκε στον κόλπο, ποιανού ο άντρας αργεί, ποιανής ο γιος έγινε καπετάνιος. Το νερό που κουβαλάω ποτίζει και τους ζωντανούς και τη μνήμη. Γέμισε κι εσύ το σταμνί σου — το ταξίδι διψάει.",
+          "en": "You think the sea belongs to the men? Come, let me tell you. Here at the fountain we are the first to learn which ship has entered the gulf, whose husband is late, whose son has become a captain. The water I carry feeds the living and the memory alike. Fill your own pitcher — the voyage is thirsty."
+        }
+      },
+      "choices": [
+        {
+          "label": {
+            "el": "Λύσε τους κάβους για τον ταρσανά",
+            "en": "Cast off toward the yard"
+          },
+          "target": "boatyard"
+        },
+        {
+          "label": {
+            "el": "Πάρε το μονοπάτι για την εκκλησία",
+            "en": "Take the path up to the church"
+          },
+          "target": "stnicholas"
+        }
+      ]
+    },
+    "boatyard": {
+      "image": "assets/images/stop_boatyard.jpeg",
+      "title": {
+        "el": "Ο Ταρσανάς",
+        "en": "The Carpenter's Yard"
+      },
+      "text": {
+        "el": "Μυρίζει πίσσα, ρετσίνι και φρεσκοπριονισμένο ξύλο. Εδώ γεννιούνται τα καΐκια του κόλπου. Σε τούτο ακριβώς το μέρος έφτιαξαν και την μπρατσέρα του καπετάν Αποστόλη. Στάσου μια στιγμή — αφού ήρθες ως εδώ, άσε με να σου πω πώς ένα παιδί έγινε ναυτικός.",
+        "en": "It smells of tar, resin, and fresh-sawn wood. Here the caïques of the gulf are born. In this very place they built Captain Apostolis's bracera. Stay a moment — since you have come this far, let me tell you how a boy became a sailor."
+      },
+      "encounter": {
+        "speaker": {
+          "el": "Λάμπρος, ο σύντροφος του καπετάνιου",
+          "en": "Lambros, the captain's shipmate"
+        },
+        "year": 1910,
+        "provenance": {
+          "el": "Επινοημένη φωνή, γύρω από αυθεντικό απόσπασμα: τα λόγια του πατέρα του καπετάν Αποστόλη Γιαννουλάκη (Νεοχώρι) και τον πορτολάνο του 1910.",
+          "en": "Invented voice, built around an authentic fragment: the words of Captain Apostolis Giannoulakis's father (Neochori) and the 1910 portolan."
+        },
+        "text": {
+          "el": "Τον Αποστόλη τον ήξερα από παιδί. Ο μικρός Αποστόλης έφευγε, μόνο και μόνο για να ξαναγυρίσει στη βάρκα λίγες μέρες αργότερα. Ο πατέρας του κουράστηκε μ' αυτό το φέρσιμο κι είπε πως ο γιος του θα γίνει ναυτικός. Και έγινε. Σε τούτον τον ταρσανά σηκώσαμε την καρίνα της μπρατσέρας του, και το 1910 χαράξαμε μαζί τον πορτολάνο μας — κάθε ακρωτήρι, κάθε ξέρα, κάθε αραξοβόλι του κόλπου. Το χαρτί εκείνο κρατούσε τη ζωή μας.",
+          "en": "I knew Apostolis from boyhood. Little Apostolies would leave, only to return to the boat a few days later. His father grew tired of this behaviour and said that his son would become a sailor. And so he did. In this very yard we raised the keel of his bracera, and in 1910 we charted our portolan together — every cape, every reef, every anchorage of the gulf. That paper held our lives."
+        }
+      },
+      "choices": [
+        {
+          "label": {
+            "el": "Ανέβασε το τάμα στον Άγιο Νικόλα",
+            "en": "Carry the votive up to St. Nicholas"
+          },
+          "target": "stnicholas"
+        },
+        {
+          "label": {
+            "el": "Ανέβα ίσια στη βίγλα",
+            "en": "Climb straight to the lookout"
+          },
+          "target": "lookout"
+        }
+      ]
+    },
+    "stnicholas": {
+      "image": "assets/images/stop_stnicholas.jpeg",
+      "title": {
+        "el": "Ο Άγιος Νικόλαος",
+        "en": "The Sailors' Church"
+      },
+      "text": {
+        "el": "Ο Άγιος Νικόλαος, ο προστάτης των ναυτικών. Μπες μέσα σιγά. Κρεμασμένα απ' το τέμπλο θα δεις μικρά ασημένια καράβια — τάματα. Κάθε ένα είναι μια υπόσχεση που δόθηκε μέσα στη φουρτούνα και τηρήθηκε στη στεριά. Εδώ ο ναυτικός αφήνει τον φόβο του πριν και την ευγνωμοσύνη του μετά.",
+        "en": "St. Nicholas, patron of sailors. Step inside softly. Hanging from the icon screen you will see little silver ships — votive offerings. Each one is a promise made in the storm and kept on dry land. Here the sailor leaves his fear before, and his gratitude after."
+      },
+      "encounter": {
+        "speaker": {
+          "el": "Ένας ναυτικός που γύρισε",
+          "en": "A sailor who returned"
+        },
+        "year": 1952,
+        "provenance": {
+          "el": "Σύνθετη φωνή, από μαρτυρίες γύρω από τα τάματα.",
+          "en": "Composite voice, from votive-offering accounts."
+        },
+        "text": {
+          "el": "Βλέπεις εκείνο το ασημένιο καραβάκι, το τρίτο απ' την άκρη; Δικό μου. Το τάξα μια νύχτα που ο καιρός σήκωσε κύματα ψηλότερα απ' τον ιστό, κι εγώ κρατιόμουν απ' το τιμόνι σαν να κρατιόμουν απ' τη ζωή. «Άγιε μου», είπα, «βγάλε με στεριά και θα σου φέρω το καράβι μου σε ασήμι». Με έβγαλε. Το έφερα. Άγγιξέ το, αν θες — δεν είναι μέταλλο, είναι μια υπόσχεση.",
+          "en": "You see that little silver ship, third from the end? Mine. I vowed it one night when the weather raised waves higher than the mast, and I clung to the wheel as though I clung to life itself. 'My saint,' I said, 'bring me to land and I will bring you my ship in silver.' He brought me. I brought it. Touch it, if you like — it is not metal, it is a promise."
+        }
+      },
+      "choices": [
+        {
+          "label": {
+            "el": "Μια τελευταία ανηφόρα ως τη βίγλα",
+            "en": "One last climb to the lookout"
+          },
+          "target": "lookout"
+        },
+        {
+          "label": {
+            "el": "Σαλπάρισε — το ταξίδι σου τελειώνει",
+            "en": "Cast off — your voyage ends"
+          },
+          "target": "end"
+        }
+      ]
+    },
+    "lookout": {
+      "image": "assets/images/stop_lookout.jpeg",
+      "title": {
+        "el": "Η Βίγλα",
+        "en": "The Lookout"
+      },
+      "text": {
+        "el": "Φτάσαμε στη βίγλα, στο ψηλότερο σημείο. Από δω το βλέμμα ανοίγεται ως το Αιγαίο. Εδώ στέκονταν οι φαμίλιες και κοίταζαν το πέλαγος, ζητώντας ένα πανί στον ορίζοντα. Η θάλασσα δίνει και παίρνει· η βίγλα μόνο περιμένει.",
+        "en": "We have reached the lookout, the highest point. From here the gaze opens all the way to the Aegean. Here the families would stand and watch the open sea, searching for a single sail on the horizon. The sea gives and the sea takes; the lookout only waits."
+      },
+      "encounter": {
+        "speaker": {
+          "el": "Η γυναίκα ενός καπετάνιου",
+          "en": "A captain's wife"
+        },
+        "year": 1897,
+        "provenance": {
+          "el": "Σύνθετη φωνή, από γράμματα και τραγούδια της ξενιτιάς των θαλασσινών.",
+          "en": "Composite voice, from letters and waiting-songs of seafarers' wives."
+        },
+        "text": {
+          "el": "Σαράντα χρόνια ανεβαίνω σε τούτο το βράχο. Πρώτα για τον πατέρα μου, ύστερα για τον άντρα μου, τώρα για τον γιο μου. Μαθαίνω τα καράβια απ' τον τρόπο που γέρνουν στον αγέρα, όπως μια μάνα ξεχωρίζει το κλάμα του παιδιού της μες στα άλλα. Μη με λυπάσαι. Το να περιμένεις είναι κι αυτό ένα είδος ταξιδιού — απλώς δεν φαίνεται στον πορτολάνο.",
+          "en": "Forty years I have climbed this rock. First for my father, then for my husband, now for my son. I know the ships by the way they lean into the wind, the way a mother tells her child's cry from all the others. Do not pity me. Waiting, too, is a kind of voyage — it simply does not show on the portolan."
+        }
+      },
+      "choices": [
+        {
+          "label": {
+            "el": "Σήκωσε άγκυρα και σαλπάρισε",
+            "en": "Weigh anchor and cast off"
+          },
+          "target": "end"
+        }
+      ]
+    }
+  },
+  "end": {
+    "title": {
+      "el": "Η ρότα που έπλευσες",
+      "en": "The Path You Sailed"
+    },
+    "text": {
+      "el": "Έδεσες το καράβι σου. Ετούτα τα σοκάκια τα περπάτησες σαν λιμάνι, κι οι φωνές του χωριού ταξίδεψαν μαζί σου. Ο καπετάν Αποστόλης θα χαμογελούσε. Καλή αντάμωση, ταξιδιώτη.",
+      "en": "You have made your ship fast. These lanes you walked as a harbour, and the voices of the village sailed with you. Captain Apostolis would have smiled. Until we meet again, traveller."
+    }
+  },
+  "credits": {
+    "title": {
+      "el": "Το πλήρωμα",
+      "en": "The Crew"
+    },
+    "intro": {
+      "el": "Η φυσική ξενάγηση στο Νεοχώρι πραγματοποιείται από:",
+      "en": "The physical tour of Neochori is led by:"
+    },
+    "people": [
+      {
+        "role": {
+          "el": "Ξεναγός / Ανθρωπολόγος",
+          "en": "Guide / Anthropologist"
+        },
+        "name": "—"
+      },
+      {
+        "role": {
+          "el": "Έρευνα & αρχείο",
+          "en": "Research & archive"
+        },
+        "name": "—"
+      },
+      {
+        "role": {
+          "el": "Ιστορικές πηγές",
+          "en": "Historical sources"
+        },
+        "name": "Πορτολάνος 1910, καπετάν Αποστόλης Γιαννουλάκης / 1910 portolan, Capt. Apostolis Giannoulakis"
+      }
+    ]
+  }
+}

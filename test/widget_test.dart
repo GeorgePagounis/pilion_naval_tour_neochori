@@ -1,30 +1,56 @@
-// This is a basic Flutter widget test.
+// Smoke test for the Neochori naval tour.
 //
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// The app loads its story from an asset at startup, so a full pump-the-app test
+// would need asset bundling. Here we just verify the story graph parses and the
+// core model contracts hold — enough to catch a broken JSON edit before a demo.
 
-import 'package:flutter/material.dart';
+import 'dart:convert';
+
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:pilion_naval_tour_neochori/main.dart';
+import 'package:pilion_naval_tour_neochori/app_state.dart';
+import 'package:pilion_naval_tour_neochori/models.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  TestWidgetsFlutterBinding.ensureInitialized();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  test('story.json parses and is internally consistent', () async {
+    final raw = await rootBundle.loadString('assets/story.json');
+    final story = Story.fromJson(jsonDecode(raw) as Map<String, dynamic>);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Start node exists.
+    expect(story.has(story.start), isTrue);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Every choice target is either a real node or the reserved 'end'.
+    for (final node in story.nodes.values) {
+      for (final choice in node.choices) {
+        expect(
+          choice.target == 'end' || story.has(choice.target),
+          isTrue,
+          reason: 'node "${node.id}" points at unknown target '
+              '"${choice.target}"',
+        );
+      }
+    }
+
+    // Bilingual copy is present on every node.
+    for (final node in story.nodes.values) {
+      expect(node.title.el.isNotEmpty && node.title.en.isNotEmpty, isTrue,
+          reason: 'node "${node.id}" missing a title translation');
+      expect(node.text.el.isNotEmpty && node.text.en.isNotEmpty, isTrue,
+          reason: 'node "${node.id}" missing narration translation');
+    }
+  });
+
+  test('AppState records visited stops in order, once each', () {
+    final s = AppState();
+    s.visit('mooring');
+    s.visit('fountain');
+    s.visit('mooring'); // duplicate — should not reorder or repeat
+    expect(s.visited, ['mooring', 'fountain']);
+
+    s.reset();
+    expect(s.visited, isEmpty);
+    expect(s.lang, Lang.en); // language preserved across reset
   });
 }

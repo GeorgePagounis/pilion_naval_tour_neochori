@@ -1,0 +1,19 @@
+Drop real photos here, named exactly:
+
+  stop_mooring.jpeg
+  stop_kalderimi.jpeg
+  stop_boatyard.jpeg
+  stop_fountain.jpeg
+  stop_stnicholas.jpeg
+  stop_lookout.jpeg
+
+Notes
+- Use .jpeg (that is what the story file expects). If a file has the wrong
+  name, rename the FILE — do not edit the JSON.
+- Landscape orientation looks best; keep each file under ~400 KB / ~1600 px
+  on the long edge so the web app loads fast.
+- After adding or changing photos, fully stop the app and re-run it
+  (`flutter run`) — new asset files are picked up at build start, not on hot
+  reload.
+- Any stop without a photo shows a painted anchor placeholder automatically,
+  so missing files never look broken.
