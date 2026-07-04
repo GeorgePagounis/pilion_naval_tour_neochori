@@ -23,8 +23,6 @@ class SceneScreen extends StatefulWidget {
 }
 
 class _SceneScreenState extends State<SceneScreen> {
-  bool _revealed = false;
-
   StoryNode get _node => widget.story[widget.nodeId]!;
 
   @override
@@ -83,14 +81,11 @@ class _SceneScreenState extends State<SceneScreen> {
                   duration: const Duration(milliseconds: 450),
                   child: _SceneContent(
                     // New key on every node/lang change rebuilds the subtree,
-                    // restarting the typewriter and re-hiding the choices.
+                    // giving a fresh State — so the typewriter restarts and the
+                    // skip/reveal flags reset automatically.
                     key: ValueKey('content-${node.id}-${lang.name}'),
                     node: node,
                     lang: lang,
-                    onNarrationDone: () {
-                      if (mounted) setState(() => _revealed = true);
-                    },
-                    revealed: _revealed,
                     onChoice: _go,
                   ),
                 ),
@@ -107,7 +102,6 @@ class _SceneScreenState extends State<SceneScreen> {
   void didUpdateWidget(covariant SceneScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.nodeId != widget.nodeId) {
-      _revealed = false;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
         appState.visit(widget.nodeId);
@@ -117,22 +111,20 @@ class _SceneScreenState extends State<SceneScreen> {
   }
 }
 
-/// The narration + choices column. Stateful so its typewriter restarts cleanly
-/// whenever the parent gives it a new key (node or language change).
+/// The narration + choices column. Stateful; a fresh key (node or language
+/// change) gives it a new State, so the typewriter restarts and the skip/reveal
+/// flags reset on their own. One tap anywhere fast-forwards: the full narration
+/// appears at once and the choices reveal immediately.
 class _SceneContent extends StatefulWidget {
   const _SceneContent({
     super.key,
     required this.node,
     required this.lang,
-    required this.onNarrationDone,
-    required this.revealed,
     required this.onChoice,
   });
 
   final StoryNode node;
   final Lang lang;
-  final VoidCallback onNarrationDone;
-  final bool revealed;
   final void Function(String target) onChoice;
 
   @override
@@ -140,7 +132,21 @@ class _SceneContent extends StatefulWidget {
 }
 
 class _SceneContentState extends State<_SceneContent> {
-  bool _done = false;
+  bool _revealed = false; // choices visible?
+  bool _skipped = false; // narration fast-forwarded to full text?
+
+  /// Fast-forward: fill in the narration and show the choices at once.
+  void _skip() {
+    if (_revealed) return;
+    setState(() {
+      _skipped = true;
+      _revealed = true;
+    });
+  }
+
+  void _onNarrationFinished() {
+    if (!_revealed && mounted) setState(() => _revealed = true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,62 +154,100 @@ class _SceneContentState extends State<_SceneContent> {
     final lang = widget.lang;
     final isEl = lang == Lang.el;
 
-    return ContentColumn(
+    return Stack(
+      fit: StackFit.expand,
       children: [
-        Text(
-          node.title.of(lang),
-          style: Theme.of(context)
-              .textTheme
-              .headlineMedium
-              ?.copyWith(color: seafoam),
-        ),
-        const SizedBox(height: 14),
-        // Typewriter narration. Tap anywhere on the text to skip to the end.
-        AnimatedTextKit(
-          key: ValueKey('typer-${node.id}-${lang.name}'),
-          isRepeatingAnimation: false,
-          displayFullTextOnTap: true,
-          totalRepeatCount: 1,
-          onFinished: () {
-            if (!_done) {
-              _done = true;
-              widget.onNarrationDone();
-            }
-          },
-          animatedTexts: [
-            TypewriterAnimatedText(
-              node.text.of(lang),
-              textStyle: Theme.of(context).textTheme.bodyLarge,
-              speed: const Duration(milliseconds: 32),
+        ContentColumn(
+          children: [
+            Text(
+              node.title.of(lang),
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineMedium
+                  ?.copyWith(color: seafoam),
+            ),
+            const SizedBox(height: 14),
+            // Narration: typewriter until finished/skipped, then plain full text.
+            if (_skipped)
+              Text(
+                node.text.of(lang),
+                style: Theme.of(context).textTheme.bodyLarge,
+              )
+            else
+              AnimatedTextKit(
+                key: ValueKey('typer-${node.id}-${lang.name}'),
+                isRepeatingAnimation: false,
+                displayFullTextOnTap: true,
+                totalRepeatCount: 1,
+                onFinished: _onNarrationFinished,
+                animatedTexts: [
+                  TypewriterAnimatedText(
+                    node.text.of(lang),
+                    textStyle: Theme.of(context).textTheme.bodyLarge,
+                    speed: const Duration(milliseconds: 32),
+                  ),
+                ],
+              ),
+            // "Tap to continue" hint while the narration is still playing.
+            if (!_revealed)
+              Padding(
+                padding: const EdgeInsets.only(top: 14),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.touch_app,
+                        size: 16, color: foam.withValues(alpha: 0.55)),
+                    const SizedBox(width: 6),
+                    Text(
+                      isEl ? 'Πάτα για συνέχεια' : 'Tap to continue',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: foam.withValues(alpha: 0.55),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            // Choices + encounter fade in once revealed.
+            AnimatedOpacity(
+              opacity: _revealed ? 1 : 0,
+              duration: const Duration(milliseconds: 500),
+              child: IgnorePointer(
+                ignoring: !_revealed,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    if (node.encounter != null) ...[
+                      const SizedBox(height: 16),
+                      EncounterButton(
+                        label: _encounterLabel(node.encounter!, isEl),
+                        onPressed: () =>
+                            showEncounter(context, node.encounter!),
+                      ),
+                    ],
+                    const SizedBox(height: 8),
+                    for (final choice in node.choices)
+                      ChoiceButton(
+                        label: choice.label.of(lang),
+                        onPressed: () => widget.onChoice(choice.target),
+                      ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
-        // Choices + encounter fade in only after narration completes.
-        AnimatedOpacity(
-          opacity: widget.revealed ? 1 : 0,
-          duration: const Duration(milliseconds: 500),
-          child: IgnorePointer(
-            ignoring: !widget.revealed,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                if (node.encounter != null) ...[
-                  const SizedBox(height: 16),
-                  EncounterButton(
-                    label: _encounterLabel(node.encounter!, isEl),
-                    onPressed: () => showEncounter(context, node.encounter!),
-                  ),
-                ],
-                const SizedBox(height: 8),
-                for (final choice in node.choices)
-                  ChoiceButton(
-                    label: choice.label.of(lang),
-                    onPressed: () => widget.onChoice(choice.target),
-                  ),
-              ],
+        // Full-screen tap layer that fast-forwards. Present only while the
+        // narration plays; once revealed it is removed so the choice buttons
+        // (below it in the column) receive taps normally. It sits below the
+        // LanguageToggle in the parent Stack, so the toggle stays clickable.
+        if (!_revealed)
+          Positioned.fill(
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: _skip,
             ),
           ),
-        ),
       ],
     );
   }
